@@ -10,13 +10,33 @@ import SwiftUI
 struct DetailView: View {
     @ObservedObject var memo: MemoEntity
     
-    @EnvironmentObject  var manager: CoreDataManager
+    @EnvironmentObject var navigationState: NavgiationState
+    
+#if os(iOS)
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+#endif
+    
+    @EnvironmentObject var manager: CoreDataManager
     
     @Environment(\.dismiss) var dismiss
     
     @State private var showComposer = false
     
     @State private var showDelete = false
+    
+    var placement: ToolbarItemPlacement {
+        
+#if os (macOS)
+        return .primaryAction
+#else
+        if horizontalSizeClass == .regular {
+            return .primaryAction
+        } else {
+            return .bottomBar
+        }
+#endif
+        
+    }
     
     
     var body: some View {
@@ -40,9 +60,11 @@ struct DetailView: View {
             }
         }
         .navigationTitle("메모 보기")
+#if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
+#endif
         .toolbar {
-            ToolbarItemGroup(placement: .bottomBar) {
+            ToolbarItemGroup(placement: placement) {
                 Button {
                     showDelete = true
                 } label: {
@@ -50,7 +72,6 @@ struct DetailView: View {
                 }
                 .foregroundColor(.red)
 
-                
                 
                 Button {
                     showComposer = true
@@ -65,7 +86,15 @@ struct DetailView: View {
         .alert("삭제 확인", isPresented: $showDelete) {
             Button(role: .destructive) {
                 manager.delete(memo: memo)
-                dismiss()
+                
+                
+#if os(iOS)
+                if horizontalSizeClass == .regular {
+                    navigationState.listId = UUID()
+                } else {
+                    dismiss()
+                }
+#endif
             } label: {
                 Text("삭제")
             }

@@ -12,6 +12,8 @@ struct SwiftUIMemoApp: App {
 //    @StateObject var store = MemoStore()
     let manager = CoreDataManager.shared
     
+    @StateObject var navigationState = NavgiationState()
+    
     
 
     var body: some Scene {
@@ -20,6 +22,7 @@ struct SwiftUIMemoApp: App {
                 .environment(\.managedObjectContext, manager.mainContext)
 //                .environmentObject(store)
                 .environmentObject(manager)
+                .environmentObject(navigationState)
         }
     }
 }

@@ -19,7 +19,41 @@ struct ComposeView: View {
     
     
     var body: some View {
-        
+#if os(macOS)
+        VStack {
+            TextEditor(text: $content)
+            .padding()
+            .onAppear {
+                if let memo = memo {
+                    //                            content = memo.content
+                    content = memo.content ?? ""
+                }
+            }
+            
+            HStack {
+                Spacer()
+                
+                Button  {
+                    dismiss()
+                } label: {
+                    Text("취소")
+                }
+            
+                Button  {
+                    if let memo = memo {
+                        manager.update(memo: memo, content: content)
+                    } else {
+                        manager.addmemo(content: content)
+                    }
+                    dismiss()
+                } label: {
+                    Text("저장")
+                }.buttonStyle(.borderedProminent)
+            }
+        }
+        .padding()
+        .frame(minWidth: 500, minHeight: 300)
+#else
         NavigationView {
             
             VStack {
@@ -60,6 +94,8 @@ struct ComposeView: View {
             }
             
         }
+#endif
+    
         
     }
 }

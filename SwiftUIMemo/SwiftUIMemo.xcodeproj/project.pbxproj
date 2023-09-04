@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7EB0B8622AA602E700ABC9AF /* NavgiationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB0B8612AA602E700ABC9AF /* NavgiationState.swift */; };
 		7EEF828E2AA371AF001FA3D0 /* SwiftUIMemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEF828D2AA371AF001FA3D0 /* SwiftUIMemoApp.swift */; };
 		7EEF82922AA371B0001FA3D0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7EEF82912AA371B0001FA3D0 /* Assets.xcassets */; };
 		7EEF82952AA371B0001FA3D0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7EEF82942AA371B0001FA3D0 /* Preview Assets.xcassets */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7EB0B8612AA602E700ABC9AF /* NavgiationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavgiationState.swift; sourceTree = "<group>"; };
 		7EEF828A2AA371AF001FA3D0 /* SwiftUIMemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUIMemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EEF828D2AA371AF001FA3D0 /* SwiftUIMemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIMemoApp.swift; sourceTree = "<group>"; };
 		7EEF82912AA371B0001FA3D0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 				7EEF828D2AA371AF001FA3D0 /* SwiftUIMemoApp.swift */,
 				7EEF82912AA371B0001FA3D0 /* Assets.xcassets */,
 				7EEF82932AA371B0001FA3D0 /* Preview Content */,
+				7EB0B8612AA602E700ABC9AF /* NavgiationState.swift */,
 			);
 			path = SwiftUIMemo;
 			sourceTree = "<group>";
@@ -185,6 +188,7 @@
 				7EEF82AD2AA486AF001FA3D0 /* MemoCell.swift in Sources */,
 				7EEF82B22AA489AC001FA3D0 /* DetailView.swift in Sources */,
 				7EEF82A72AA372FB001FA3D0 /* MemoStore.swift in Sources */,
+				7EB0B8622AA602E700ABC9AF /* NavgiationState.swift in Sources */,
 				7EEF82A12AA3720A001FA3D0 /* MainListView.swift in Sources */,
 				7EEF829A2AA371B0001FA3D0 /* SwiftUIMemo.xcdatamodeld in Sources */,
 				7EEF82B02AA48723001FA3D0 /* ComposeView.swift in Sources */,
