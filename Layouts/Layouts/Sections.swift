@@ -10,20 +10,35 @@ import SwiftUI
 struct Sections: View {
     var body: some View {
         ScrollView {
-            LazyVStack {
-                EmojiView(emoji: "😀")
-                EmojiView(emoji: "😍")
-                EmojiView(emoji: "😎")
+            LazyVStack(pinnedViews: [.sectionHeaders]) {
                 
-                EmojiView(emoji: "🐶")
-                EmojiView(emoji: "🐱")
-                EmojiView(emoji: "🐯")
+                Section {
+                    EmojiView(emoji: "😀")
+                    EmojiView(emoji: "😍")
+                    EmojiView(emoji: "😎")
+                    
+                } header: {
+                    SectionHeaderView(title: "Emtion")
+                }
                 
-                EmojiView(emoji: "🍎")
-                EmojiView(emoji: "🍌")
-                EmojiView(emoji: "🍓")
-            }
-            .frame(maxWidth: .infinity)
+                Section {
+                    EmojiView(emoji: "🐶")
+                    EmojiView(emoji: "🐱")
+                    EmojiView(emoji: "🐯")
+                    
+                } header: {
+                    SectionHeaderView(title: "Animals")
+                }
+                
+                Section {
+                    EmojiView(emoji: "🍎")
+                    EmojiView(emoji: "🍌")
+                    EmojiView(emoji: "🍓")
+                } header: {
+                    SectionHeaderView(title: "Fruits")
+                }
+                
+            }.frame(maxWidth: .infinity)
         }
     }
 }
