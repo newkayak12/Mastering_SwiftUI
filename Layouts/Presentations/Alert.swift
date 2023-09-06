@@ -14,7 +14,6 @@ struct Alert_Tutorials: View {
             
             Button {
 //                isAlert.toggle()
-                
                 imageData = ImageData.sample
                 showImageAlert.toggle()
             } label: {
