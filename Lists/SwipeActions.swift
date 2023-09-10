@@ -1,26 +1,3 @@
-//
-//  Mastering SwiftUI
-//  Copyright (c) KxCoding <help@kxcoding.com>
-//
-//  Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
-//  furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in
-//  all copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-//  THE SOFTWARE.
-//
-
 import SwiftUI
 
 struct SwipeActions: View {
@@ -32,14 +9,54 @@ struct SwipeActions: View {
             Section("Favorites") {
                 ForEach(favorites) { item in
                     Text(item.name)
+                        .swipeActions {
+                            Button(role: .destructive) {
+                                withAnimation {
+                                    if let index = favorites.firstIndex(of: item) {
+                                        favorites.remove(at: index)
+                                    }
+                                }
+                            } label: {
+                                Image(systemName: "trash")
+                            }
+                        }
                 }
             }
             
             Section("All Products") {
                 ForEach(allProducts) { item in
                     Text(item.name)
+                        .swipeActions(edge: .leading, allowsFullSwipe: false) {
+                            Button {
+                                withAnimation {
+                                    favorites.append(item)
+                                }
+                            } label: {
+                                Image(systemName: "hand.thumbsup")
+                            }
+                            .tint(.blue)
+                            
+                            Button {
+                                
+                            } label: {
+                                Text("Menu")
+                            }
+                        }
+                    
+                        .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                            Button(role: .destructive) {
+                                withAnimation {
+                                    if let index = favorites.firstIndex(of: item) {
+                                        favorites.remove(at: index)
+                                    }
+                                }
+                            } label: {
+                                Image(systemName: "trash")
+                            }
+                            
+                        }
                 }
-            }            
+            }
         }
     }
 }

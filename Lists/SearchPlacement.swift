@@ -25,8 +25,9 @@ struct SearchPlacement: View {
                 Text("Three")
             }
             .navigationTitle("Second")
+            .searchable(text: $keyword, placement: .automatic)
         }
-        .searchable(text: $keyword, placement: .automatic)
+        
     }
 }
 

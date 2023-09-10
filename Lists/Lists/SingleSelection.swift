@@ -1,34 +1,32 @@
-//
-//  Mastering SwiftUI
-//  Copyright (c) KxCoding <help@kxcoding.com>
-//
-//  Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
-//  furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in
-//  all copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-//  THE SOFTWARE.
-//
-
 import SwiftUI
 
 struct SingleSelection: View {
     var items = AppleProduct.sampleList
+    @State var selected: AppleProduct? = nil
         
     var body: some View {
         VStack {
+            Text("Selected : \(selected?.name ?? " - ")")
+                .font(.largeTitle)
             
+            
+            List(items, id: \.self, selection: $selected) { appleProduct in
+//                Button {
+////                    selected = appleProduct
+//                    //일반 모드에서는 selection 필요 없고 그냥 버튼으로 하면 된다고 한다. 이친구는 편집모드에서
+//                } label: {
+//                    Text(appleProduct.name)
+//                }
+                
+                Text(appleProduct.name)
+
+            }
+        }
+        .toolbar {
+#if os(iOS)
+            EditButton()
+#endif
+
         }
     }
 }
