@@ -1,38 +1,21 @@
-//
-//  Mastering SwiftUI
-//  Copyright (c) KxCoding <help@kxcoding.com>
-//
-//  Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
-//  furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in
-//  all copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-//  THE SOFTWARE.
-//
-
 import SwiftUI
 
+/**
+ ObservableObject :  class protocol => 뷰에서 인스턴스를 감시할 수 있다. ==> ViewModel같은 경우
+ ObservedObject : propertyWrapper => 속성을 선언할 때 사용 하는  ==> ObservableObject를 observing
+ Published : ObservablableObject에서 사용 ==> 속성을 선언 ==> 이 녀석을 감시할 수 있따.
+ */
 struct ObservableList: View {
     @State private var value: String = ""
+    @ObservedObject var viewModel: ViewModel = ViewModel()
     
     var body: some View {
         VStack {
-            Text("Hello")
+            Text(viewModel.title)
                 .font(.largeTitle)
             
             Button {
-                
+                viewModel.title = "TITLE"
             } label: {
                 Text("Update Title")
             }
@@ -44,15 +27,17 @@ struct ObservableList: View {
                     .padding()
                 
                 Button {
-                    
+                    viewModel.list.insert(value, at: 0)
+                    value = ""
+                //view 가 업데이트되면 @ObservedObject 선언 안해도 전체 렌더가 발생해서 업데이트 될 수도 있구나
                 } label: {
                     Text("Add To List")
                 }
                 .padding()
             }
             
-            List {
-                Text("Hello")
+            List(viewModel.list, id: \.self) { item in
+                Text(item)
             }
         }
     }
