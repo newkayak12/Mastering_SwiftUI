@@ -1,8 +1,13 @@
 import SwiftUI
 
 struct SimultaneousGesture_Tutorials: View {
+    
     @ObservedObject var rotation = Rotation()
     @ObservedObject var magnification = Magnification()
+    
+    private var simultaneousGesture: some Gesture {
+        rotation.gesture.simultaneously(with: magnification.gesture)
+    }
     
     var body: some View {
         VStack {
@@ -12,8 +17,9 @@ struct SimultaneousGesture_Tutorials: View {
                 .frame(width: 200, height: 200)
                 .rotationEffect(rotation.finalAngle)
                 .scaleEffect(magnification.finalScale)
-                .gesture(rotation.gesture)
-                .gesture(magnification.gesture)
+                .gesture(simultaneousGesture)
+//                .gesture(rotation.gesture.simultaneously(with: magnification.gesture))
+//                .gesture(magnification.gesture)
             
         }
     }
