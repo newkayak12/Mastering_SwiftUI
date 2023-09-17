@@ -1,31 +1,11 @@
-//
-//  Mastering SwiftUI
-//  Copyright (c) KxCoding <help@kxcoding.com>
-//
-//  Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
-//  furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in
-//  all copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-//  THE SOFTWARE.
-//
-
 import SwiftUI
 
 struct Storage_Tutorials: View {
-    @State private var number = 0
-    @State private var color = Color.yellow
+//    @State private var number = 0
+//    @AppStorage("number") private var number = 0 // 멀티 윈도우라도 공유됨( 스플릿 뷰로 같은 앱 두개를 띄워놓았을 경우 )
+    @SceneStorage("number") private var number = 0 // 하나의 씬에서 값을 저장하는데, 바로 저장하는 것은 아님 (appStorage보다 텀이 김)
+//    이전 상태를 복구하는 용도로도 사용할 수 있다.
+    @AppStorage("color") private var color = Color.yellow
     
     var body: some View {
         VStack {

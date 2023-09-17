@@ -1,31 +1,12 @@
-//
-//  Mastering SwiftUI
-//  Copyright (c) KxCoding <help@kxcoding.com>
-//
-//  Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
-//  furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in
-//  all copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-//  THE SOFTWARE.
-//
-
 import SwiftUI
 import CoreData
 
 struct MemberList: View {
-    let members = [MemberEntity]()
+    @FetchRequest(sortDescriptors: [SortDescriptor(\MemberEntity.name, order: .forward)])
+    var members: FetchedResults<MemberEntity>
+//    var members = [MemberEntity]()
+    
+    @Environment(\.managedObjectContext) var context
     
     @State private var showComposer = false
     @State private var editTarget: MemberEntity?
@@ -34,6 +15,15 @@ struct MemberList: View {
     @State private var keyword = ""
     
     func delete(at rows: IndexSet) {
+        rows.forEach { index in
+            context.delete( members[index] )
+        }
+
+        do {
+            try context.save()
+        } catch {
+            print( error )
+        }
         
     }
         
@@ -54,7 +44,16 @@ struct MemberList: View {
             }
             .onDelete(perform: delete(at:))
         }
+        .searchable(text: $keyword)
+        .onChange(of: keyword, perform: { newValue in
+            members.nsPredicate = newValue.isEmpty ?
+            nil :
+            NSPredicate(format: "name CONTAINS[c] %@", newValue)
+        })
         .onChange(of: selectedSortType, perform: { newValue in
+            let t = SortType.types.first { t in t.id == newValue } ?? SortType.types[0]
+            
+            members.sortDescriptors = t.descriptors
             
         })
         .sheet(item: $editTarget, content: { target in
@@ -108,6 +107,7 @@ struct MemberList_Previews: PreviewProvider {
         NavigationView {
             MemberList()                
                 .navigationTitle("Members")
+                .environment(\.managedObjectContext, CoreDataManager.shared.mainContext)
         }
     }
 }
