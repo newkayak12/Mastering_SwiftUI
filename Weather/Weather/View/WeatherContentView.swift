@@ -24,7 +24,7 @@ struct WeatherContentView: View {
                     VStack {
                         Spacer()
                         
-                        CurrentWeatherView(model: .preview)
+                        CurrentWeatherView(model: service.currentWeather)
                     }
                     .frame(height: reader.size.height)
                     

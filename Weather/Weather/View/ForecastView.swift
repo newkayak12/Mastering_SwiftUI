@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct ForecastView: View {
+    @EnvironmentObject var service: WeatherService
     
     var body: some View {
-        ForEach(Forecast.preview) { forecast in
+        ForEach(service.forecastList ?? []) { forecast in
             HStack {
                 VStack(alignment: .leading) {
                     Text(forecast.date)
@@ -22,7 +23,9 @@ struct ForecastView: View {
                 Spacer()
                 
                 Image(systemName: forecast.icon)
+                    .symbolRenderingMode(.multicolor)
                     .font(.title3)
+                    
                 
                 Text(forecast.weather)
                     .font(.title3)
@@ -46,5 +49,6 @@ struct ForecastView_Previews: PreviewProvider {
             
         }
         .preferredColorScheme(.dark)
+        .environmentObject(WeatherService.preview)
     }
 }

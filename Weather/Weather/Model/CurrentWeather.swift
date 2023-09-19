@@ -29,4 +29,23 @@ extension CurrentWeather {
                               forecastedDate: .now
         )
     }
+    
+    init?( data: CodableCurrentWeather ) {
+        guard let weatherInfo = data.weather.first else { return nil }
+        
+        icon = weatherInfo.icon.weatherImageName
+        weather = weatherInfo.description
+        temperature = data.main.temp.temeratureString
+        maxTemperature = data.main.temp_max.temeratureString
+        minTemperature = data.main.temp_min.temeratureString
+        
+        var date = Date(timeIntervalSince1970: data.sys.sunrise)
+        sunrise = date.formatted(.dateTime.hour().minute())
+        
+        date = Date(timeIntervalSince1970: data.sys.sunset)
+        sunset = date.formatted(.dateTime.hour().minute())
+        
+        forecastedDate = Date(timeIntervalSince1970: data.dt )
+        
+    }
 }

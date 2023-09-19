@@ -14,8 +14,16 @@ struct MainView: View {
         ZStack {
            BackgroundView()
             
-           WeatherContentView()
+            if service.updating {
+                ProgressView()
+            } else if let _ = service.lastError {
+                ErrorView()
+            } else {
+                WeatherContentView()
+            }
+            
         }
+        .animation(.easeOut, value: service.updating)
         .onAppear {
             service.fetch()
         }

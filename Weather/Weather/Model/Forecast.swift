@@ -33,4 +33,20 @@ extension Forecast {
                             forecastedDate: .now )
         }
     }
+    
+    
+    init?( data: CodableForecast.ListItem ) {
+        let dt = Date(timeIntervalSince1970: TimeInterval(data.dt ))
+        date = dt.formatted(.dateTime.month().day())
+        time = dt.formatted(.dateTime.hour().minute())
+        forecastedDate = dt
+        
+        guard let weatherData = data.weather.first else { return nil }
+        icon = weatherData.icon.weatherImageName
+        weather = weatherData.description
+        
+        temperature = data.main.temp.temeratureString
+        minTemperature = data.main.temp_min.temeratureString
+        maxTemperature = data.main.temp_max.temeratureString
+    }
 }
