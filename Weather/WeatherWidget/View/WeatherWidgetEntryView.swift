@@ -8,7 +8,7 @@
 import SwiftUI
 import WidgetKit
 
-struct WeatherWidgetEntryView : View {
+struct WeatherWidgetEntryView: View {
     var entry: Provider.Entry
     
     var body: some View {

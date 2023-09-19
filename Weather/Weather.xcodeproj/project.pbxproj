@@ -42,6 +42,12 @@
 		7EC7BDD42AB9CB9A003D20DD /* WeatherEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC7BDD22AB9CB9A003D20DD /* WeatherEntry.swift */; };
 		7EC7BDD72AB9CC06003D20DD /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC7BDD52AB9CC06003D20DD /* Provider.swift */; };
 		7EC7BDDB2AB9CCDB003D20DD /* WeatherWidgetEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC7BDD92AB9CCDB003D20DD /* WeatherWidgetEntryView.swift */; };
+		7EC7BDDF2AB9D48B003D20DD /* FileManager+SharedContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC7BDDE2AB9D48B003D20DD /* FileManager+SharedContainer.swift */; };
+		7EC7BDE02AB9D48B003D20DD /* FileManager+SharedContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC7BDDE2AB9D48B003D20DD /* FileManager+SharedContainer.swift */; };
+		7EC7BDE12AB9D535003D20DD /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC7BD902AB874A6003D20DD /* Forecast.swift */; };
+		7EC7BDE22AB9D535003D20DD /* CurrentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC7BD8C2AB872D3003D20DD /* CurrentWeather.swift */; };
+		7EC7BDE32AB9D544003D20DD /* CodableCurrentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC7BDA52AB9BD2B003D20DD /* CodableCurrentWeather.swift */; };
+		7EC7BDE42AB9D544003D20DD /* CodableForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC7BDA22AB9BBEC003D20DD /* CodableForecast.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +109,9 @@
 		7EC7BDD22AB9CB9A003D20DD /* WeatherEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherEntry.swift; sourceTree = "<group>"; };
 		7EC7BDD52AB9CC06003D20DD /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
 		7EC7BDD92AB9CCDB003D20DD /* WeatherWidgetEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherWidgetEntryView.swift; sourceTree = "<group>"; };
+		7EC7BDDC2AB9D3D9003D20DD /* Weather.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Weather.entitlements; sourceTree = "<group>"; };
+		7EC7BDDD2AB9D462003D20DD /* WeatherWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WeatherWidgetExtension.entitlements; sourceTree = "<group>"; };
+		7EC7BDDE2AB9D48B003D20DD /* FileManager+SharedContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+SharedContainer.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +137,7 @@
 		7EC7BD612AB87036003D20DD = {
 			isa = PBXGroup;
 			children = (
+				7EC7BDDD2AB9D462003D20DD /* WeatherWidgetExtension.entitlements */,
 				7EC7BD6C2AB87037003D20DD /* Weather */,
 				7EC7BDB72AB9CA58003D20DD /* WeatherWidget */,
 				7EC7BDB22AB9CA58003D20DD /* Frameworks */,
@@ -147,6 +157,7 @@
 		7EC7BD6C2AB87037003D20DD /* Weather */ = {
 			isa = PBXGroup;
 			children = (
+				7EC7BDDC2AB9D3D9003D20DD /* Weather.entitlements */,
 				7EC7BD832AB870FC003D20DD /* View */,
 				7EC7BD822AB870E1003D20DD /* Extension */,
 				7EC7BD812AB870D3003D20DD /* Service */,
@@ -192,6 +203,7 @@
 			children = (
 				7EC7BD8E2AB873AF003D20DD /* Double+TemperatureString.swift */,
 				7EC7BDA02AB88564003D20DD /* String+WeatherSymbol.swift */,
+				7EC7BDDE2AB9D48B003D20DD /* FileManager+SharedContainer.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -366,6 +378,7 @@
 				7EC7BD9C2AB87E2E003D20DD /* WeatherService.swift in Sources */,
 				7EC7BDA12AB88564003D20DD /* String+WeatherSymbol.swift in Sources */,
 				7EC7BD962AB878E1003D20DD /* WeatherContentView.swift in Sources */,
+				7EC7BDDF2AB9D48B003D20DD /* FileManager+SharedContainer.swift in Sources */,
 				7EC7BDAC2AB9C90D003D20DD /* ErrorView.swift in Sources */,
 				7EC7BD982AB87944003D20DD /* CurrentWeatherView.swift in Sources */,
 				7EC7BDA62AB9BD2B003D20DD /* CodableCurrentWeather.swift in Sources */,
@@ -388,15 +401,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7EC7BDE02AB9D48B003D20DD /* FileManager+SharedContainer.swift in Sources */,
 				7EC7BDB92AB9CA58003D20DD /* WeatherWidgetBundle.swift in Sources */,
+				7EC7BDE22AB9D535003D20DD /* CurrentWeather.swift in Sources */,
 				7EC7BDBB2AB9CA58003D20DD /* WeatherWidgetLiveActivity.swift in Sources */,
 				7EC7BDCF2AB9CB3E003D20DD /* Double+TemperatureString.swift in Sources */,
+				7EC7BDE32AB9D544003D20DD /* CodableCurrentWeather.swift in Sources */,
+				7EC7BDE12AB9D535003D20DD /* Forecast.swift in Sources */,
 				7EC7BDD02AB9CB42003D20DD /* WidgetData.swift in Sources */,
 				7EC7BDDB2AB9CCDB003D20DD /* WeatherWidgetEntryView.swift in Sources */,
 				7EC7BDD72AB9CC06003D20DD /* Provider.swift in Sources */,
 				7EC7BDCE2AB9CB3C003D20DD /* String+WeatherSymbol.swift in Sources */,
 				7EC7BDBD2AB9CA58003D20DD /* WeatherWidget.swift in Sources */,
 				7EC7BDC22AB9CA5A003D20DD /* WeatherWidget.intentdefinition in Sources */,
+				7EC7BDE42AB9D544003D20DD /* CodableForecast.swift in Sources */,
 				7EC7BDD42AB9CB9A003D20DD /* WeatherEntry.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -532,6 +550,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Weather/Weather.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Weather/Preview Content\"";
@@ -566,6 +585,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Weather/Weather.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Weather/Preview Content\"";
@@ -599,6 +619,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = WeatherWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = NL7TARX6W5;
@@ -626,6 +647,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = WeatherWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = NL7TARX6W5;
